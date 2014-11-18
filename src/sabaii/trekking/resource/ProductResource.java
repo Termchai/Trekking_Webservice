@@ -32,13 +32,25 @@ import sabaii.trekking.database.ProductDao;
 import sabaii.trekking.entity.Product;
 import sabaii.trekking.jpa.JpaDaoFactory;
 
+/**
+ * Controller of the webservice
+ * @author Sabaii Soft. SKE10
+ *
+ */
 @Path("/products")
 public class ProductResource {
-	ProductDao dao = JpaDaoFactory.getInstance().getContactDao();
+	private ProductDao dao = JpaDaoFactory.getInstance().getContactDao();
 	
 	@Context
 	UriInfo uriInfo;
-
+	
+	/**
+	 * get product by ID
+	 * @param id is the id of product
+	 * @param none_match header param to check last update
+	 * @param match header param to check last update
+	 * @return Entity of the product
+	 */
 	@GET
 	@Path("{id}")
 	public Response getContactById(@PathParam("id") String id, @HeaderParam ("If-None-Match") String none_match, @HeaderParam ("If-Match") String match)
@@ -56,6 +68,10 @@ public class ProductResource {
 		return Response.ok(p).tag(new EntityTag(p.hashCode()+"")).build();
 	}
 
+	/**
+	 * Get all product
+	 * @return Entity of all product
+	 */
 	@GET
 	@Produces (MediaType.APPLICATION_XML)
 	public Response getContact()

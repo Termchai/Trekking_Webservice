@@ -5,7 +5,7 @@ import sabaii.trekking.jpa.JpaDaoFactory;
 
 /**
  * Superclass for MemDaoFactory and JpaDaoFactory
- * @author Termchai Sadsaengchan 5510546042
+ * @author Sabaii Soft. SKE10
  *
  */
 public class ProductFactory {

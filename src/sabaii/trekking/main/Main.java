@@ -6,10 +6,17 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ServerProperties;
 
 import sabaii.trekking.database.ProductFactory;
-
+/**
+ * class main to run webservice
+ * @author Sabaii Soft. SKE10
+ *
+ */
 public class Main {
-
+	
+	
+	 /*port of the webservice */
 	static final int PORT = 8080;
+	
 	static Server server;
 
 	public static void main(String[] args) throws Exception {

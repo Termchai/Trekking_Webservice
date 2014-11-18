@@ -11,6 +11,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Model of the product
+ * @author Sabaii Soft. SKE10
+ *
+ */
 @XmlRootElement(name="product")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
@@ -149,6 +154,9 @@ public class Product implements Serializable {
 		return id + " " + name + ":";
 	}
 	
+	/**
+	 * method to check that the id is equal or not
+	 */
 	public boolean equals(Object other) {
 		if (other == null || other.getClass() != this.getClass()) return false;
 		Product contact = (Product) other;
