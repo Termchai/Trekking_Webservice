@@ -38,7 +38,7 @@ public class JpaDaoFactory extends ProductFactory {
 	}
 	
 	@Override
-	public ProductDao getContactDao() {
+	public ProductDao getProductDao() {
 		return contactDao;
 	}
 	

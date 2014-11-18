@@ -31,7 +31,7 @@ public interface ProductDao {
 	 * @param contact the contact to save or replace.
 	 * @return true if saved successfully
 	 */
-	public abstract boolean save(Product contact);
+	public abstract boolean save(Product product);
 
 	/**
 	 * Update a Contact.  Only the non-null fields of the
@@ -41,6 +41,6 @@ public interface ProductDao {
 	 */
 	public abstract boolean update(Product update);
 
-	public List<Product> findByTitle(String titlestr);
+	public List<Product> findByName(String titlestr);
 
 }

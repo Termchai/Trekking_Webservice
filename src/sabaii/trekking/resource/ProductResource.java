@@ -39,7 +39,7 @@ import sabaii.trekking.jpa.JpaDaoFactory;
  */
 @Path("/products")
 public class ProductResource {
-	private ProductDao dao = JpaDaoFactory.getInstance().getContactDao();
+	private ProductDao dao = JpaDaoFactory.getInstance().getProductDao();
 	
 	@Context
 	UriInfo uriInfo;
@@ -53,17 +53,13 @@ public class ProductResource {
 	 */
 	@GET
 	@Path("{id}")
-	public Response getContactById(@PathParam("id") String id, @HeaderParam ("If-None-Match") String none_match, @HeaderParam ("If-Match") String match)
+	public Response getProductByID(@PathParam("id") String id, @HeaderParam ("If-None-Match") String none_match, @HeaderParam ("If-Match") String match)
 	{
 		Product p = dao.find(Long.parseLong(id));
 		if (p==null)
-		{
 			return Response.status(Status.NOT_FOUND).build();
-		}
 		if (none_match != null && none_match.equals("\""+p.hashCode()+"\"") || match != null && !match.equals("\""+p.hashCode()+"\""))
-		{
 			return Response.status(Status.NOT_MODIFIED).build();
-		}
 		
 		return Response.ok(p).tag(new EntityTag(p.hashCode()+"")).build();
 	}
@@ -74,10 +70,11 @@ public class ProductResource {
 	 */
 	@GET
 	@Produces (MediaType.APPLICATION_XML)
-	public Response getContact()
+	public Response getProducts()
 	{
 		GenericEntity<List<Product>> entity;
 		entity = new GenericEntity<List<Product>>(dao.findAll()) {};
+		
 		return Response.ok(entity).build();
 	}
 

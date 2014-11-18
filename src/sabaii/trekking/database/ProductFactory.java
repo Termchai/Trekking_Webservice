@@ -25,7 +25,7 @@ public class ProductFactory {
 		super();
 	}
 
-	public ProductDao getContactDao() {
+	public ProductDao getProductDao() {
 		return daoInstance;
 	}
 /**

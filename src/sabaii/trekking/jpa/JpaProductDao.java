@@ -62,11 +62,11 @@ public class JpaProductDao implements ProductDao {
 	 * @see sabaii.trekking.database.ProductDao#findByTitle(java.lang.String)
 	 */
 	@Override
-	public List<Product> findByTitle(String titlestr) {
+	public List<Product> findByName(String titlestr) {
 		// LIKE does string match using patterns.
-		Query query = em.createQuery("select c from Contact c where LOWER(c.title) LIKE :title");
+		Query query = em.createQuery("select p from Product p where LOWER(p.name) LIKE :name");
 		// % is wildcard that matches anything
-		query.setParameter("title", "%"+titlestr.toLowerCase()+"%");
+		query.setParameter("name", "%"+titlestr.toLowerCase()+"%");
 		// now why bother to copy one list to another list?
 		java.util.List<Product> result = Lists.newArrayList( query.getResultList() );
 		return result;
