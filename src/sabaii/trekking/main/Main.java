@@ -25,7 +25,7 @@ public class Main {
 		ServletContextHandler context = new ServletContextHandler( ServletContextHandler.SESSIONS );
 		ServletHolder holder = new ServletHolder( org.glassfish.jersey.servlet.ServletContainer.class );
 		holder.setInitParameter(ServerProperties.PROVIDER_PACKAGES, "sabaii.trekking.resource");
-		context.addServlet( holder, "/*" );
+		context.addServlet( holder, "/api/v1/*" );
 		server.setHandler( context );
 		System.out.println("Starting Jetty server on port " + port);
 		server.start();
