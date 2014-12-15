@@ -12,7 +12,7 @@
 	<class>sabaii.trekking.entity.Product</class>
 	<!-- describe the database for JPA -->
 	<properties>
-		<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:tsp.sqlite" />
+		<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:development.sqlite3" />
 		<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
 		<!-- this option tells EclipseLink to generate schema. Set to "none" to skip ddl generation. -->
 		<property name="eclipselink.logging.level" value="WARNING" />

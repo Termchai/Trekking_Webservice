@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -32,6 +33,8 @@ public class Product implements Serializable {
 	private String name, description, feature, spec, created_at, updated_at;
 	private double price, weight, width, height, depth, percent_discount;
 	private int quantity;
+	@Transient
+	private Link link; 
 	
 	public String getFeature() {
 		return feature;
@@ -167,6 +170,14 @@ public class Product implements Serializable {
 	@Override
 	public int hashCode() {
 		return (id + name + quantity + price + description).hashCode();
+	}
+
+	public Link getLink() {
+		return link;
+	}
+
+	public void setLink(Link link) {
+		this.link = link;
 	}
 
 }

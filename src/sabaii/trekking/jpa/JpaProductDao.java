@@ -1,5 +1,6 @@
 package sabaii.trekking.jpa;
 
+import java.net.URLEncoder;
 import java.util.*;
 
 import javax.persistence.EntityExistsException;
@@ -8,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import sabaii.trekking.database.ProductDao;
+import sabaii.trekking.entity.Link;
 import sabaii.trekking.entity.Product;
 
 import java.util.logging.Logger;
@@ -44,7 +46,9 @@ public class JpaProductDao implements ProductDao {
 	 */
 	@Override
 	public Product find(long id) {
-		return em.find(Product.class, id);  // isn't this sooooo much easier than JDBC?
+		Product product = em.find(Product.class, id);  // isn't this sooooo much easier than JDBC?
+		product.setLink(new Link(createLink(product)));
+		return product;
 	}
 
 	/**
@@ -53,9 +57,17 @@ public class JpaProductDao implements ProductDao {
 	@Override
 	public List<Product> findAll() {
 		Query query = em.createQuery("SELECT p FROM Product p");
-		List lst = query.getResultList();
-		return lst;
+		List<Product> products = query.getResultList();
+		for (Product product : products) {
+			product.setLink(new Link(createLink(product)));
+		}
+		return products;
 	}
+
+	private String createLink(Product product) {
+		return "http://แม้พแฟ้พ.ไทย/product/" + product.getName().replace(" ", "%20") + "?ref=" + product.getId();
+	}
+
 
 	/**
 	 * Find contacts whose title contains string
@@ -68,8 +80,11 @@ public class JpaProductDao implements ProductDao {
 		// % is wildcard that matches anything
 		query.setParameter("name", "%"+titlestr.toLowerCase()+"%");
 		// now why bother to copy one list to another list?
-		java.util.List<Product> result = Lists.newArrayList( query.getResultList() );
-		return result;
+		List<Product> products = Lists.newArrayList( query.getResultList() );
+		for (Product product : products) {
+			product.setLink(new Link(createLink(product)));
+		}
+		return products;
 	}
 
 	/**
